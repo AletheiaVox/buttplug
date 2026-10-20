@@ -1,0 +1,28 @@
+---
+defaults:
+  name: Lelo Ina Thrust
+  features:
+  - id: b4053175-64c1-4552-bbc6-12a723f84650
+    output:
+      oscillate:
+        value:
+        - 0
+        - 100
+    index: 0
+  - id: c08f82a2-e503-4daa-a893-da2ac7d709c1
+    output:
+      vibrate:
+        value:
+        - 0
+        - 100
+    index: 1
+  id: eb343395-b1d6-43b0-8dd4-5a2991daf31f
+communication:
+- btle:
+    names:
+    - Ina Thrust
+    services:
+      0000fff0-0000-1000-8000-00805f9b34fb:
+        command: 0000fff1-0000-1000-8000-00805f9b34fb
+        tx: 0000fff2-0000-1000-8000-00805f9b34fb
+        whitelist: 00000a11-0000-1000-8000-00805f9b34fb

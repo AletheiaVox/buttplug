@@ -1,0 +1,160 @@
+devices:
+  - identifier:
+      name: "Ina Thrust"
+    expected_name: "Lelo Ina Thrust"
+device_init:
+  - !Commands
+      device_index: 0
+      commands:
+        - !Subscribe
+            endpoint: whitelist
+  - !Events
+      device_index: 0
+      events:
+        - !Notifications
+          - endpoint: whitelist
+            data: [0, 0, 0, 0, 0, 0, 0, 0]
+  - !Events
+      device_index: 0
+      events:
+        - !Notifications
+          - endpoint: whitelist
+            data: [1, 2, 3, 4, 5, 6, 7, 8]
+  - !Commands
+      device_index: 0
+      commands:
+        - !Unsubscribe
+            endpoint: whitelist
+        - !Write
+            endpoint: whitelist
+            data: [1, 2, 3, 4, 5, 6, 7, 8]
+            write_with_response: true
+        - !Subscribe
+            endpoint: whitelist
+  - !Events
+      device_index: 0
+      events:
+        - !Notifications
+          - endpoint: whitelist
+            data: [1, 0, 0, 0, 0, 0, 0, 0]
+  - !Commands
+      device_index: 0
+      commands:
+        - !Write
+            endpoint: tx
+            data: [0x0a, 0x12, 0x01, 0x00]
+            write_with_response: true
+        - !Write
+            endpoint: tx
+            data: [0x0a, 0x12, 0x02, 0x00]
+            write_with_response: true
+device_commands:
+  - !VersionGated
+      min_spec_version: 3
+      commands:
+        - !Messages
+            device_index: 0
+            messages:
+              - !Scalar
+                - Index: 0
+                  Scalar: 0.8
+                  ActuatorType: Oscillate
+        - !Commands
+            device_index: 0
+            commands:
+              - !Write
+                  endpoint: tx
+                  data: [0x0a, 0x12, 0x01, 0x08, 0x03, 0xe8, 0x03, 0xe8, 0x50, 0x00]
+                  write_with_response: true
+        - !Messages
+            device_index: 0
+            messages:
+              - !Scalar
+                - Index: 1
+                  Scalar: 0.8
+                  ActuatorType: Vibrate
+        - !Commands
+            device_index: 0
+            commands:
+              - !Write
+                  endpoint: tx
+                  data: [0x0a, 0x12, 0x02, 0x08, 0x03, 0xe8, 0x03, 0xe8, 0x50, 0x00]
+                  write_with_response: true
+        - !Messages
+            device_index: 0
+            messages:
+              - !Scalar
+                - Index: 0
+                  Scalar: 1.0
+                  ActuatorType: Oscillate
+                - Index: 1
+                  Scalar: 1.0
+                  ActuatorType: Vibrate
+        - !Commands
+            device_index: 0
+            commands:
+              - !Write
+                  endpoint: tx
+                  data: [0x0a, 0x12, 0x01, 0x08, 0x03, 0xe8, 0x03, 0xe8, 0x64, 0x00]
+                  write_with_response: true
+              - !Write
+                  endpoint: tx
+                  data: [0x0a, 0x12, 0x02, 0x08, 0x03, 0xe8, 0x03, 0xe8, 0x64, 0x00]
+                  write_with_response: true
+        - !Messages
+            device_index: 0
+            messages:
+              - !Scalar
+                - Index: 0
+                  Scalar: 0.0
+                  ActuatorType: Oscillate
+                - Index: 1
+                  Scalar: 0.0
+                  ActuatorType: Vibrate
+        - !Commands
+            device_index: 0
+            commands:
+              - !Write
+                  endpoint: tx
+                  data: [0x0a, 0x12, 0x01, 0x00]
+                  write_with_response: true
+              - !Write
+                  endpoint: tx
+                  data: [0x0a, 0x12, 0x02, 0x00]
+                  write_with_response: true
+        - !Messages
+            device_index: 0
+            messages:
+              - !Scalar
+                - Index: 0
+                  Scalar: 0.5
+                  ActuatorType: Oscillate
+                - Index: 1
+                  Scalar: 0.5
+                  ActuatorType: Vibrate
+        - !Commands
+            device_index: 0
+            commands:
+              - !Write
+                  endpoint: tx
+                  data: [0x0a, 0x12, 0x01, 0x08, 0x03, 0xe8, 0x03, 0xe8, 0x32, 0x00]
+                  write_with_response: true
+              - !Write
+                  endpoint: tx
+                  data: [0x0a, 0x12, 0x02, 0x08, 0x03, 0xe8, 0x03, 0xe8, 0x32, 0x00]
+                  write_with_response: true
+  - !Messages
+      device_index: 0
+      messages:
+        - !Stop
+  - !Commands
+      device_index: 0
+      commands:
+        - !Write
+            endpoint: tx
+            data: [0x0a, 0x12, 0x01, 0x00]
+            write_with_response: true
+        - !Write
+            endpoint: tx
+            data: [0x0a, 0x12, 0x02, 0x00]
+            write_with_response: true

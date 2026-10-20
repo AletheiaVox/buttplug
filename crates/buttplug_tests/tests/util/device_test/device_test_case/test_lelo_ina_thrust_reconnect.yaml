@@ -1,0 +1,43 @@
+devices:
+  - identifier:
+      name: "Ina Thrust"
+    expected_name: "Lelo Ina Thrust"
+device_init:
+  - !Commands
+      device_index: 0
+      commands:
+        - !Subscribe
+            endpoint: whitelist
+  - !Events
+      device_index: 0
+      events:
+        - !Notifications
+          - endpoint: whitelist
+            data: [1, 0, 0, 0, 0, 0, 0, 0]
+  - !Commands
+      device_index: 0
+      commands:
+        - !Write
+            endpoint: tx
+            data: [0x0a, 0x12, 0x01, 0x00]
+            write_with_response: true
+        - !Write
+            endpoint: tx
+            data: [0x0a, 0x12, 0x02, 0x00]
+            write_with_response: true
+device_commands:
+  - !Messages
+      device_index: 0
+      messages:
+        - !Stop
+  - !Commands
+      device_index: 0
+      commands:
+        - !Write
+            endpoint: tx
+            data: [0x0a, 0x12, 0x01, 0x00]
+            write_with_response: true
+        - !Write
+            endpoint: tx
+            data: [0x0a, 0x12, 0x02, 0x00]
+            write_with_response: true
